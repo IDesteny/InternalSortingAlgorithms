@@ -168,7 +168,9 @@ WndProc(
 
 					for (INT i = 0; i < 5; ++i)
 					{
-						SetRandValues(arr, size);
+						for (INT i = 0; i < size; ++i)
+							arr[i] = rand();
+
 						Sorts[i](arr, size, &comp[i], &perm[i], &time[i], NULL);
 
 						_itot_s(comp[i], OutBuffer, 16, 10);
