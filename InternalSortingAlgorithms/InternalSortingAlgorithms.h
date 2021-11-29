@@ -3,17 +3,13 @@
 
 typedef VOID(*OUT_DATA_CALLBACK)(PINT, INT);
 
-LONGLONG
-GetTicks(
-	VOID);
-
 VOID
 BubbleSort(
 	PINT arr,
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback);
 
 VOID
@@ -22,7 +18,7 @@ SelectionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback);
 
 VOID
@@ -31,7 +27,7 @@ InclusionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback);
 
 VOID
@@ -40,7 +36,7 @@ ShellSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback);
 
 VOID
@@ -49,5 +45,5 @@ LinearSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback);

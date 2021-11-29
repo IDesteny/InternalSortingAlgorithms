@@ -6,11 +6,11 @@ BubbleSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback)
 {
 	INT tmp, _comp = 0, _perm = 0;
-	LONGLONG t = GetTicks();
+	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
@@ -29,7 +29,7 @@ BubbleSort(
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTicks() - t;
+	if (time) *time = GetTickCount64() - t;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
 }
@@ -40,11 +40,11 @@ SelectionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback)
 {
 	INT min, temp, _comp = 0, _perm = 0;
-	LONGLONG t = GetTicks();
+	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
@@ -67,7 +67,7 @@ SelectionSort(
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTicks() - t;
+	if (time) *time = GetTickCount64() - t;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
 }
@@ -78,11 +78,11 @@ InclusionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback)
 {
 	INT key, j, _comp = 0, _perm = 0;
-	LONGLONG t = GetTicks();
+	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 1; i < size; ++i)
 	{
@@ -101,7 +101,7 @@ InclusionSort(
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTicks() - t;
+	if (time) *time = GetTickCount64() - t;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
 }
@@ -112,11 +112,11 @@ ShellSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback)
 {
 	INT tmp, j, _comp = 0, _perm = 0;
-	LONGLONG t = GetTicks();
+	ULONGLONG t = GetTickCount64();
 
 	for (INT gap = size >> 1; gap; gap >>= 1)
 	{
@@ -134,7 +134,7 @@ ShellSort(
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTicks() - t;
+	if (time) *time = GetTickCount64() - t;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
 }
@@ -145,11 +145,11 @@ LinearSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
+	PULONGLONG time,
 	OUT_DATA_CALLBACK callback)
 {
 	INT min, index, k, _comp = 0, _perm = 0;
-	LONGLONG t = GetTicks();
+	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
@@ -174,16 +174,7 @@ LinearSort(
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTicks() - t;
+	if (time) *time = GetTickCount64() - t;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
-}
-
-LONGLONG
-GetTicks(
-	VOID)
-{
-	LARGE_INTEGER ticks;
-	QueryPerformanceCounter(&ticks);
-	return ticks.QuadPart;
 }
