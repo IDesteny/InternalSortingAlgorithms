@@ -20,15 +20,6 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #define BTN_4 1004
 #define BTN_5 1005
 
-VOID
-SetRandValues(
-	PINT arr,
-	INT size)
-{
-	for (INT i = 0; i < size; ++i)
-		arr[i] = rand();
-}
-
 VOID(*Sorts[])(
 	PINT,
 	INT,
