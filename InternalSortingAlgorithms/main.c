@@ -69,7 +69,7 @@ ShowSort(
 	free(arr);
 }
 
-#pragma warning(default: 6386)
+
 
 LRESULT
 WndProc(
@@ -161,6 +161,7 @@ WndProc(
 
 					INT size = _tstoi(InputBuffer);
 					PINT arr = malloc(size * sizeof(INT));
+					if (!arr) break;
 					TCHAR OutBuffer[16];
 					ULONGLONG time[5] = { 0 };
 					INT comp[5] = { 0 };
@@ -233,6 +234,8 @@ WndProc(
 
 	return EXIT_SUCCESS;
 }
+
+#pragma warning(default: 6386)
 
 INT
 _tWinMain(
