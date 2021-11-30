@@ -1,3 +1,4 @@
+#pragma once
 #include <windows.h>
 
 typedef VOID(*OUTPUT_DATA_CALLBACK)(PINT, INT);
