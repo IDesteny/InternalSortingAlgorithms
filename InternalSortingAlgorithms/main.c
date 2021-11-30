@@ -34,6 +34,7 @@ VOID(*Sorts[])(
 		LinearSort
 };
 
+INT tmpArr[20];
 TCHAR buffer[256];
 HWND outputEdit;
 
@@ -42,11 +43,16 @@ Bypass(
 	PINT arr,
 	INT size)
 {
+	if (!memcmp(arr, tmpArr, size * sizeof(INT)))
+		return;
+
 	for (INT i = 0; i < size; ++i)
 	{
 		_stprintf_s(buffer + lstrlen(buffer), ARRAYSIZE(buffer) - lstrlen(buffer), _T("%i "), arr[i]);
 	}
 	_stprintf_s(buffer + lstrlen(buffer), ARRAYSIZE(buffer) - lstrlen(buffer), _T("\r\n"));
+
+	memcpy(tmpArr, arr, size * sizeof(INT));
 }
 
 #pragma warning(disable: 6386)
@@ -68,8 +74,6 @@ ShowSort(
 	SetWindowText(outputEdit, buffer);
 	free(arr);
 }
-
-
 
 LRESULT
 WndProc(
