@@ -26,7 +26,7 @@ VOID(*Sorts[])(
 	PINT,
 	PINT,
 	PULONGLONG,
-	OUT_DATA_CALLBACK) = {
+	OUTPUT_DATA_CALLBACK) = {
 		BubbleSort,
 		SelectionSort,
 		InclusionSort,

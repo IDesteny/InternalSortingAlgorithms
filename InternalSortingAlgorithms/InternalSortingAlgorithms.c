@@ -7,7 +7,7 @@ BubbleSort(
 	PINT comp,
 	PINT perm,
 	PULONGLONG time,
-	OUT_DATA_CALLBACK callback)
+	OUTPUT_DATA_CALLBACK callback)
 {
 	INT tmp, _comp = 0, _perm = 0;
 	ULONGLONG t = GetTickCount64();
@@ -41,7 +41,7 @@ SelectionSort(
 	PINT comp,
 	PINT perm,
 	PULONGLONG time,
-	OUT_DATA_CALLBACK callback)
+	OUTPUT_DATA_CALLBACK callback)
 {
 	INT min, temp, _comp = 0, _perm = 0;
 	ULONGLONG t = GetTickCount64();
@@ -79,7 +79,7 @@ InclusionSort(
 	PINT comp,
 	PINT perm,
 	PULONGLONG time,
-	OUT_DATA_CALLBACK callback)
+	OUTPUT_DATA_CALLBACK callback)
 {
 	INT key, j, _comp = 0, _perm = 0;
 	ULONGLONG t = GetTickCount64();
@@ -113,7 +113,7 @@ ShellSort(
 	PINT comp,
 	PINT perm,
 	PULONGLONG time,
-	OUT_DATA_CALLBACK callback)
+	OUTPUT_DATA_CALLBACK callback)
 {
 	INT tmp, j, _comp = 0, _perm = 0;
 	ULONGLONG t = GetTickCount64();
@@ -146,7 +146,7 @@ LinearSort(
 	PINT comp,
 	PINT perm,
 	PULONGLONG time,
-	OUT_DATA_CALLBACK callback)
+	OUTPUT_DATA_CALLBACK callback)
 {
 	INT min, index, k, _comp = 0, _perm = 0;
 	ULONGLONG t = GetTickCount64();
