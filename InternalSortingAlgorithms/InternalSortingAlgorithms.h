@@ -1,11 +1,7 @@
 #pragma once
 #include <windows.h>
 
-typedef VOID(*OUT_DATA_CALLBACK)(PINT, INT);
-
-LONGLONG
-GetTicks(
-	VOID);
+typedef VOID(*OUTPUT_DATA_CALLBACK)(PINT, INT);
 
 VOID
 BubbleSort(
@@ -13,8 +9,8 @@ BubbleSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
-	OUT_DATA_CALLBACK callback);
+	PULONGLONG time,
+	OUTPUT_DATA_CALLBACK callback);
 
 VOID
 SelectionSort(
@@ -22,8 +18,8 @@ SelectionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
-	OUT_DATA_CALLBACK callback);
+	PULONGLONG time,
+	OUTPUT_DATA_CALLBACK callback);
 
 VOID
 InclusionSort(
@@ -31,8 +27,8 @@ InclusionSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
-	OUT_DATA_CALLBACK callback);
+	PULONGLONG time,
+	OUTPUT_DATA_CALLBACK callback);
 
 VOID
 ShellSort(
@@ -40,8 +36,8 @@ ShellSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
-	OUT_DATA_CALLBACK callback);
+	PULONGLONG time,
+	OUTPUT_DATA_CALLBACK callback);
 
 VOID
 LinearSort(
@@ -49,5 +45,5 @@ LinearSort(
 	INT size,
 	PINT comp,
 	PINT perm,
-	PLONGLONG time,
-	OUT_DATA_CALLBACK callback);
+	PULONGLONG time,
+	OUTPUT_DATA_CALLBACK callback);
