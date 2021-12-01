@@ -34,7 +34,6 @@ VOID(*Sorts[])(
 		LinearSort
 };
 
-INT tmpArr[20];
 TCHAR buffer[256];
 HWND outputEdit;
 
@@ -43,6 +42,8 @@ Bypass(
 	PINT arr,
 	INT size)
 {
+	static INT tmpArr[20] = { 0 };
+
 	if (!memcmp(arr, tmpArr, size * sizeof(INT)))
 		return;
 
@@ -54,8 +55,6 @@ Bypass(
 
 	memcpy(tmpArr, arr, size * sizeof(INT));
 }
-
-#pragma warning(disable: 6386)
 
 VOID
 ShowSort(
@@ -174,7 +173,7 @@ WndProc(
 					for (INT i = 0; i < 5; ++i)
 					{
 						for (INT i = 0; i < size; ++i)
-							arr[i] = rand();
+							arr[i] = rand() % 10;
 
 						Sorts[i](arr, size, &comp[i], &perm[i], &time[i], NULL);
 
@@ -238,8 +237,6 @@ WndProc(
 
 	return EXIT_SUCCESS;
 }
-
-#pragma warning(default: 6386)
 
 INT
 _tWinMain(
