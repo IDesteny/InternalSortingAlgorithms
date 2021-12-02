@@ -149,7 +149,6 @@ LinearSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT min, index, k, _comp = 0, _perm = 0;
-	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
@@ -158,7 +157,6 @@ LinearSort(
 
 		for (INT j = i + 1; j < size; ++j)
 		{
-			++_comp;
 			if (min > arr[j])
 			{
 				min = arr[j];
@@ -169,12 +167,11 @@ LinearSort(
 		k = arr[i];
 		arr[i] = min;
 		arr[index] = k;
-		++_perm;
 
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTickCount64() - t;
+	if (time) *time = 0;
 	if (comp) *comp = _comp;
 	if (perm) *perm = _perm;
 }
