@@ -10,15 +10,18 @@ BubbleSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT tmp, _comp = 0, _perm = 0;
+	if (callback) callback(arr, size);
 	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
+		BOOL cmp = FALSE;
 		for (INT j = 0; j < size - i - 1; ++j)
 		{
 			++_comp;
 			if (arr[j] > arr[j + 1])
 			{
+				cmp = TRUE;
 				tmp = arr[j];
 				arr[j] = arr[j + 1];
 				arr[j + 1] = tmp;
@@ -27,6 +30,7 @@ BubbleSort(
 		}
 
 		if (callback) callback(arr, size);
+		if (!cmp) break;
 	}
 
 	if (time) *time = GetTickCount64() - t;
@@ -44,17 +48,19 @@ SelectionSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT min, temp, _comp = 0, _perm = 0;
+	if (callback) callback(arr, size);
 	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
 		min = i;
-
+		BOOL cmp = FALSE;
 		for (INT j = i + 1; j < size; ++j)
 		{
 			++_comp;
 			if (arr[j] < arr[min])
 			{
+				cmp = TRUE;
 				min = j;
 			}
 		}
@@ -65,6 +71,7 @@ SelectionSort(
 		++_perm;
 
 		if (callback) callback(arr, size);
+		if (!cmp) break;
 	}
 
 	if (time) *time = GetTickCount64() - t;
@@ -82,6 +89,7 @@ InclusionSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT key, j, _comp = 0, _perm = 0;
+	if (callback) callback(arr, size);
 	ULONGLONG t = GetTickCount64();
 
 	for (INT i = 1; i < size; ++i)
@@ -116,6 +124,7 @@ ShellSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT tmp, j, _comp = 0, _perm = 0;
+	if (callback) callback(arr, size);
 	ULONGLONG t = GetTickCount64();
 
 	for (INT gap = size >> 1; gap; gap >>= 1)
@@ -149,16 +158,18 @@ LinearSort(
 	OUTPUT_DATA_CALLBACK callback)
 {
 	INT min, index, k, _comp = 0, _perm = 0;
+	if (callback) callback(arr, size);
 
 	for (INT i = 0; i < size - 1; ++i)
 	{
 		min = arr[i];
 		index = i;
-
+		BOOL cmp = FALSE;
 		for (INT j = i + 1; j < size; ++j)
 		{
 			if (min > arr[j])
 			{
+				cmp = TRUE;
 				min = arr[j];
 				index = j;
 			}
@@ -169,6 +180,7 @@ LinearSort(
 		arr[index] = k;
 
 		if (callback) callback(arr, size);
+		if (!cmp) break;
 	}
 
 	if (time) *time = 0;
