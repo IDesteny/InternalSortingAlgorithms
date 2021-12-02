@@ -34,7 +34,7 @@ VOID(*Sorts[])(
 		LinearSort
 };
 
-TCHAR buffer[1024];
+TCHAR buffer[256];
 HWND outputEdit;
 
 VOID
@@ -58,14 +58,14 @@ Bypass(
 
 VOID
 ShowSort(
-	INT index, INT arraySize, INT rnd)
+	INT index, INT arraySize)
 {
 	PINT arr = malloc(arraySize * sizeof(INT));
 	if (!arr)
 		return;
 
 	for (INT i = 0; i < arraySize; ++i)
-		arr[i] = rand() % rnd;
+		arr[i] = rand() % 10;
 
 	ZeroMemory(buffer, sizeof(buffer));
 	Sorts[index](arr, arraySize, NULL, NULL, NULL, Bypass);
@@ -193,31 +193,31 @@ WndProc(
 
 				case BTN_1:
 				{
-					ShowSort(0, 10, 100);
+					ShowSort(0, 10);
 					break;
 				}
 
 				case BTN_2:
 				{
-					ShowSort(1, 10, 100);
+					ShowSort(1, 10);
 					break;
 				}
 
 				case BTN_3:
 				{
-					ShowSort(2, 10, 100);
+					ShowSort(2, 10);
 					break;
 				}
 
 				case BTN_4:
 				{
-					ShowSort(3, 20, 100);
+					ShowSort(3, 20);
 					break;
 				}
 
 				case BTN_5:
 				{
-					ShowSort(4, 10, 10);
+					ShowSort(4, 10);
 					break;
 				}
 			}
