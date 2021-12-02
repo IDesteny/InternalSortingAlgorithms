@@ -42,11 +42,18 @@ Bypass(
 	PINT arr,
 	INT size)
 {
+	static INT tmpArr[20] = { 0 };
+
+	if (!memcmp(arr, tmpArr, size * sizeof(INT)))
+		return;
+
 	for (INT i = 0; i < size; ++i)
 	{
 		_stprintf_s(buffer + lstrlen(buffer), ARRAYSIZE(buffer) - lstrlen(buffer), _T("%i "), arr[i]);
 	}
 	_stprintf_s(buffer + lstrlen(buffer), ARRAYSIZE(buffer) - lstrlen(buffer), _T("\r\n"));
+
+	memcpy(tmpArr, arr, size * sizeof(INT));
 }
 
 VOID
@@ -58,7 +65,7 @@ ShowSort(
 		return;
 
 	for (INT i = 0; i < arraySize; ++i)
-		arr[i] = rand() % rnd + 10;
+		arr[i] = rand() % rnd;
 
 	ZeroMemory(buffer, sizeof(buffer));
 	Sorts[index](arr, arraySize, NULL, NULL, NULL, Bypass);
@@ -100,7 +107,7 @@ WndProc(
 			edits[13] = CreateWindow(_T("edit"), NULL, WS_CHILD | WS_VISIBLE | ES_CENTER | WS_BORDER | ES_READONLY, 291, 122, 48, 27, hWnd, NULL, NULL, NULL);
 			edits[14] = CreateWindow(_T("edit"), NULL, WS_CHILD | WS_VISIBLE | ES_CENTER | WS_BORDER | ES_READONLY, 291, 152, 48, 27, hWnd, NULL, NULL, NULL);
 			edits[15] = CreateWindow(_T("edit"), NULL, WS_CHILD | WS_VISIBLE | ES_CENTER | WS_BORDER | ES_NUMBER, 0, 187, 80, 30, hWnd, NULL, NULL, NULL);
-			outputEdit = CreateWindow(_T("edit"), NULL, WS_CHILD | WS_VISIBLE | ES_CENTER | WS_BORDER | ES_READONLY | ES_MULTILINE, 80, 232, 400, 200, hWnd, NULL, NULL, NULL);
+			outputEdit = CreateWindow(_T("edit"), NULL, WS_CHILD | WS_VISIBLE | ES_CENTER | WS_BORDER | ES_READONLY | ES_MULTILINE, 80, 232, 261, 148, hWnd, NULL, NULL, NULL);
 			CreateWindow(_T("button"), _T("Run"), WS_CHILD | WS_VISIBLE, 80, 187, 262, 30, hWnd, (HMENU)BTN_0, NULL, NULL);
 			CreateWindow(_T("button"), _T("Bubble"), WS_CHILD | WS_VISIBLE, 0, 231, 80, 30, hWnd, (HMENU)BTN_1, NULL, NULL);
 			CreateWindow(_T("button"), _T("Selection"), WS_CHILD | WS_VISIBLE, 0, 261, 80, 30, hWnd, (HMENU)BTN_2, NULL, NULL);
@@ -186,25 +193,25 @@ WndProc(
 
 				case BTN_1:
 				{
-					ShowSort(0, 10, 90);
+					ShowSort(0, 10, 100);
 					break;
 				}
 
 				case BTN_2:
 				{
-					ShowSort(1, 10, 90);
+					ShowSort(1, 10, 100);
 					break;
 				}
 
 				case BTN_3:
 				{
-					ShowSort(2, 10, 90);
+					ShowSort(2, 10, 100);
 					break;
 				}
 
 				case BTN_4:
 				{
-					ShowSort(3, 20, 90);
+					ShowSort(3, 20, 100);
 					break;
 				}
 
@@ -252,7 +259,7 @@ _tWinMain(
 	HWND hWnd = CreateWindow(
 		wc.lpszClassName,
 		NULL, WS_OVERLAPPEDWINDOW,
-		700, 300, 500, 620,
+		700, 300, 357, 420,
 		NULL, NULL, hInstance, NULL);
 
 	if (!hWnd)
