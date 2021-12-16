@@ -148,33 +148,34 @@ LinearSort(
 	PULONGLONG time,
 	OUTPUT_DATA_CALLBACK callback)
 {
-	INT min, index, k, _comp = 0, _perm = 0;
-	ULONGLONG t = GetTickCount64();
-
-	for (INT i = 0; i < size - 1; ++i)
+	INT max = *arr;
+	for (INT i = 0; i < size; ++i)
 	{
-		min = arr[i];
-		index = i;
-
-		for (INT j = i + 1; j < size; ++j)
+		if (arr[i] > max)
 		{
-			++_comp;
-			if (min > arr[j])
-			{
-				min = arr[j];
-				index = j;
-			}
+			max = arr[i];
 		}
+	}
 
-		k = arr[i];
-		arr[i] = min;
-		arr[index] = k;
-		++_perm;
+	PINT c = calloc(max + 1, sizeof(INT));
+	if (!c)
+		return;
+
+	for (INT i = 0; i < size; ++i)
+	{
+		++c[arr[i]];
+	}
+
+	INT b = 0;
+	for (INT i = 0; i < max + 1; ++i)
+	{
+		for (INT j = 0; j < c[i]; ++j)
+		{
+			arr[b++] = i;
+		}
 
 		if (callback) callback(arr, size);
 	}
 
-	if (time) *time = GetTickCount64() - t;
-	if (comp) *comp = _comp;
-	if (perm) *perm = _perm;
+	free(c);
 }
